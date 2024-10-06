@@ -106288,68 +106288,163 @@
 
 
 
-{
-  "name": "BMW-MD",
-  "version": "10.8.1",
-  "description": "BMW-MD latest multi device whatsapp bot",
-  "main": "body.js",
-  "type": "module",
-  "scripts": {
-    "start": "pm2 start body.js --deep-monitoring --attach --name BMW-MD",
-    "stop": "pm2 stop BMW-MD",
-    "restart": "pm2 restart BMW-MD"
-  },
-  "keywords": ["bmw-md", "whatsapp-bot", "whatsapp md bot"],
-  "author": "Ibrahim Adams",
-  "license": "ISC",
-  "dependencies": {
-    "@ffmpeg-installer/ffmpeg": "^1.1.0",
-    "@google/generative-ai": "^0.9.0",
-    "@hapi/boom": "^10.0.1",
-    "@whiskeysockets/baileys": "^6.7.5",
-    "@xaviabot/fb-downloader": "^1.0.14",
-    "acrcloud": "^1.4.0",
-    "api-dylux": "^1.8.3",
-    "aptoide-scraper": "^1.0.1",
-    "awesome-phonenumber": "^6.8.0",
-    "axios": "^1.6.8",
-    "chalk": "^5.3.0",
-    "child_process": "^1.0.2",
-    "crypto": "^1.0.1",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "ffmpeg": "^0.0.4",
-    "file-type": "^19.0.0",
-    "fluent-ffmpeg": "^2.1.3",
-    "fs": "^0.0.1-security",
-    "google-it": "^1.6.4",
-    "human-readable": "^0.2.1",
-    "jimp": "^0.16.13",
-    "jpeg-js": "^0.4.4",
-    "jsqr": "^1.4.0",
-    "libphonenumber": "^0.0.10",
-    "moment-timezone": "^0.5.45",
-    "nayan-media-downloader": "^2.4.7",
-    "node-cache": "^5.1.2",
-    "node-cron": "^3.0.3",
-    "node-fetch": "^3.3.2",
-    "node-os-utils": "^1.3.7",
-    "node-webpmux": "^3.2.0",
-    "os": "^0.1.2",
-    "pdfkit": "^0.15.0",
-    "pm2": "^5.4.0",
-    "pino": "^8.20.0",
-    "proto": "^1.0.19",
-    "qrcode": "^1.5.3",
-    "qrcode-terminal": "^0.12.0",
-    "readline": "^1.3.0",
-    "remove.bg": "^1.3.0",
-    "tesseract.js": "^5.1.0",
-    "translate-google-api": "^1.0.4",
-    "url": "^0.11.4",
-    "uuid": "^9.0.1",
-    "wasitech": "npm:@distube/ytdl-core",
-    "yt-search": "^2.11.0",
-    "ytdl-core": "^4.11.2"
-  }
+import { promises as fs } from 'fs';
+import path from 'path';
+import fetch from 'node-fetch';
+import pkg from '@whiskeysockets/baileys';
+const { generateWAMessageFromContent, proto } = pkg;
+import config from '../../config.cjs';
+
+
+const __filename = new URL(import.meta.url).pathname;
+const __dirname = path.dirname(__filename);
+const chatHistoryFile = path.resolve(__dirname, '../mistral_history.json');
+
+const mistralSystemPrompt = "you are a good assistant.";
+
+async function readChatHistoryFromFile() {
+    try {
+        const data = await fs.readFile(chatHistoryFile, "utf-8");
+        return JSON.parse(data);
+    } catch (err) {
+        return {};
+    }
 }
+
+async function writeChatHistoryToFile(chatHistory) {
+    try {
+        await fs.writeFile(chatHistoryFile, JSON.stringify(chatHistory, null, 2));
+    } catch (err) {
+        console.error('Error writing chat history to file:', err);
+    }
+}
+
+async function updateChatHistory(chatHistory, sender, message) {
+    if (!chatHistory[sender]) {
+        chatHistory[sender] = [];
+    }
+    chatHistory[sender].push(message);
+    if (chatHistory[sender].length > 20) {
+        chatHistory[sender].shift();
+    }
+    await writeChatHistoryToFile(chatHistory);
+}
+
+async function deleteChatHistory(chatHistory, userId) {
+    delete chatHistory[userId];
+    await writeChatHistoryToFile(chatHistory);
+}
+
+const mistral = async (m, Matrix) => {
+    const chatHistory = await readChatHistoryFromFile();
+    const text = m.body.toLowerCase();
+
+    if (text === "/forget") {
+        await deleteChatHistory(chatHistory, m.sender);
+        await Matrix.sendMessage(m.from, { text: 'Conversation deleted successfully' }, { quoted: m });
+        return;
+    }
+
+    const prefix = config.PREFIX;
+const cmd = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ')[0].toLowerCase() : '';
+const prompt = m.body.slice(prefix.length + cmd.length).trim();
+
+    const validCommands = ['ai', 'gpt', 'mistral'];
+
+    if (validCommands.includes(cmd)) {
+        if (!prompt) {
+            await Matrix.sendMessage(m.from, { text: 'Please give me a prompt' }, { quoted: m });
+            return;
+        }
+
+        try {
+            const senderChatHistory = chatHistory[m.sender] || [];
+            const messages = [
+                { role: "system", content: mistralSystemPrompt },
+                ...senderChatHistory,
+                { role: "user", content: prompt }
+            ];
+
+            await m.React("⏳");
+
+            const response = await fetch('https://matrixcoder.tech/api/ai', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    type: "text-generation",
+                    model: "hf/meta-llama/meta-llama-3-8b-instruct",
+                    messages: messages
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const responseData = await response.json();
+
+            await updateChatHistory(chatHistory, m.sender, { role: "user", content: prompt });
+            await updateChatHistory(chatHistory, m.sender, { role: "assistant", content: responseData.result.response });
+
+            const answer = responseData.result.response;
+
+            const codeMatch = answer.match(/```([\s\S]*?)```/);
+
+            if (codeMatch) {
+                const code = codeMatch[1];
+                
+                let msg = generateWAMessageFromContent(m.from, {
+                    viewOnceMessage: {
+                        message: {
+                            messageContextInfo: {
+                                deviceListMetadata: {},
+                                deviceListMetadataVersion: 2
+                            },
+                            interactiveMessage: proto.Message.InteractiveMessage.create({
+                                body: proto.Message.InteractiveMessage.Body.create({
+                                    text: answer
+                                }),
+                                footer: proto.Message.InteractiveMessage.Footer.create({
+                                    text: "> © Ibrahim Adams"
+                                }),
+                                header: proto.Message.InteractiveMessage.Header.create({
+                                    title: "",
+                                    subtitle: "",
+                                    hasMediaAttachment: false
+                                }),
+                                nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
+                                    buttons: [
+                                        {
+                                            name: "cta_copy",
+                                            buttonParamsJson: JSON.stringify({
+                                                display_text: "Copy Your Code",
+                                                id: "copy_code",
+                                                copy_code: code
+                                            })
+                                        }
+                                    ]
+                                })
+                            })
+                        }
+                    }
+                }, {});
+
+                await Matrix.relayMessage(msg.key.remoteJid, msg.message, {
+                    messageId: msg.key.id
+                });
+            } else {
+                await Matrix.sendMessage(m.from, { text: answer }, { quoted: m });
+            }
+
+            await m.React("✅");
+        } catch (err) {
+            await Matrix.sendMessage(m.from, { text: "Something went wrong" }, { quoted: m });
+            console.error('Error: ', err);
+            await m.React("❌");
+        }
+    }
+};
+
+export default mistral;

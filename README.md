@@ -15172,17 +15172,21 @@
 
 
 
-
 <p align="center">  
-  <a href="https://whatsapp.com/channel/0029VaZuGSxEawdxZK9CzM0Y">
-    
-  <a href="https://ibb.co/N6NMDtn"><img src="https://telegra.ph/file/f03bd3b5a50f2892ec1ee.jpg" alt="01" border="0" /></a>                     
-    <h1 align="center">BMW MD BEST WABOT</h1>
+  <a href="https://telegra.ph/file/f03bd3b5a50f2892ec1ee.jpg">
+    <img alt="secktor docs" height="300" src="https://telegra.ph/file/f03bd3b5a50f2892ec1ee.jpg">
+    <h1 align="center"> BMW BWB MADE BY IBRAHIM ADAMS</h1>
   </a>
-  <div align="center">
-  <img src="https://spogit.vercel.app/api?theme=dark&rainbow=true&scan=true" alt="Widget with the current Spotify song"  />
-</div>
+</p>  
   
+</p>
+
+---
+
+  ***
+
+<a href="https://www.buymeacoffee.com/ibrahimadams" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
 </p>
 <p align="center">
 <a href="https://github.com/ibrahimaitech"><img title="Author" src="https://img.shields.io/badge/ibrahimaitech-black?style=for-the-badge&logo=Github"></a> <a href="https://whatsapp.com/channel/0029VaZuGSxEawdxZK9CzM0Y"><img title="Author" src="https://img.shields.io/badge/CHANNEL-black?style=for-the-badge&logo=whatsapp"></a> <a href="https://wa.me/25471077266"><img title="Author" src="https://img.shields.io/badge/CHAT US-black?style=for-the-badge&logo=whatsapp"></a>
@@ -15198,65 +15202,55 @@
 
 
 
-***
-
-
-- <a href="buymeacoffee.com/ibrahimadams"><img title="Buy me a coffee 🙏🥲" src="https://img.shields.io/badge/Buy me a coffee 🙏🥲-h?color=green&style=for-the-badge&logo=bmw" width="220" height="38.45"/></a></p>
 
 
 
 
-***
+ <a href="https://ibrahim-adams.vercel.app"><img title="GET SESSION" src="https://img.shields.io/badge/GET SESSION-h?color=blue&style=for-the-badge&logo=bmw" width="220" height="38.45"/></a></p>
 
 
-- <a href="https://ibrahim-adams.vercel.app"><img title="GET SESSION OPT 1" src="https://img.shields.io/badge/GET SESSION OPT 1-h?color=red&style=for-the-badge&logo=bmw" width="220" height="38.45"/></a></p>
+
 
 ***
 
 
-- <a href="https://ibraah-adams.onrender.com"><img title="GET SESSION OPT 2" src="https://img.shields.io/badge/GET SESSION OPT 2-h?color=red&style=for-the-badge&logo=bmw" width="220" height="38.45"/></a></p>
+
+### 🧚‍♀️IBRAHIM ADAM'S💫
 
 ***
 
+⭕  DEPLOY BOTTOM BOT *[ HEROKU ]*
 
-- <a href="https://replit.com/@devibraahadams/Replit-ibrahim-adams-scanner"><img title="GET SESSION OPT 3" src="https://img.shields.io/badge/GET SESSION OPT 3-h?color=red&style=for-the-badge&logo=bmw" width="220" height="38.45"/></a></p>
+[![Find On Whatsapp ](https://img.shields.io/badge/➤Click-Here-red.svg)](https://bmw-verification.vercel.app/)
 
-*********
+⭕  DEPLOY NORMAL BOT *[ HEROKU ]*
 
-*To avoid heroku ban fork my repo then copy that forked link and join it at the end of this link👇*
- ```
- https://dashboard.heroku.com/new?template=
-```
-</p>
+[![Find On Whatsapp ](https://img.shields.io/badge/➤Click-Here-red.svg)](https://bmw-verification.vercel.app/nomal.html)
 
-*After that tap on the link you have created and deploy*
-***
-**[`How to connect forked link with heroku template and avoid  heroku ban..Tap here and see the video`](https://files.fm/f/hqnjmf6v4z)**
-
-***
-- <a href="https://dashboard.heroku.com/new?template=https://github.com/omlugha/BWM-XMD"><img title="DEPLOY ON HEROKU" src="https://img.shields.io/badge/DEPLOY ON HEROKU-h?color=red&style=for-the-badge&logo=bmw" width="220" height="38.45"/></a></p>
 
 ***
 
-- <a href="https://toystack.ai"><img title="Deploy On Render" src="https://img.shields.io/badge/DEPLOY ON TOYSTACK-h?color=orange&style=for-the-badge&logo=bmw" width="220" height="38.45"/></a></p>
+⭕  DEPLOY NORMAL BOT *[ HEROKU ]*
+
+[![Find On Whatsapp ](https://img.shields.io/badge/🚘Click_Here-pink.svg)](https://dashboard.heroku.com/new?template=https://github.com/devibrah/BWM-XMD)
+
+****
+
+⭕  DEPLOY ON [ RENDER ]
+
+[![Find On Whatsapp ](https://img.shields.io/badge/🚘Click_Here-blue.svg)](https://render.com)
+
+[![Find On Whatsapp ](https://img.shields.io/badge/🚘How_to_deploy-grey.svg)](https://youtu.be/pxL3iQ4ZkL4?si=JYU3CFTPp8YdKOo5)
 
 ***
 
-- <a href="https://www.clever-cloud.com/"><img title="Deploy On Render" src="https://img.shields.io/badge/DEPLOY ON CLEVER-h?color=black&style=for-the-badge&logo=bmw" width="220" height="38.45"/></a></p>
+⭕  DEPLOY ON [ Panel ]
 
-***
+[![Find On Whatsapp ](https://img.shields.io/badge/🚘Click_Here-blue.svg)](https://toystack.ai)
 
+[![Find On Whatsapp ](https://img.shields.io/badge/🚘How_to_deploy-grey.svg)](https://youtu.be/MsHd3uzDUhY?si=mitgINm02HtAhoBm)
 
-- <a href="https://render.com"><img title="Deploy On Render" src="https://img.shields.io/badge/DEPLOY ON RENDER-h?color=grey&style=for-the-badge&logo=bmw" width="220" height="38.45"/></a></p>
-
-***
-
-- <a href="https://uptimerobot.com"><img title="Run it on uptime" src="https://img.shields.io/badge/RUN ON UPTIME-h?color=blue&style=for-the-badge&logo=bmw" width="220" height="38.45"/></a></p>
-
-***
-
-- <a href="https://github.com/IBRAHIM-TECH-AI/IBRAHIM-ADAMS-INFO"><img title="Deploy On Render" src="https://img.shields.io/badge/DEV INFORMATION-h?color=grey&style=for-the-badge&logo=bmw" width="220" height="38.45"/></a></p>
-
+ # ⚡ BMW INFO
 ***
 
 </p>
